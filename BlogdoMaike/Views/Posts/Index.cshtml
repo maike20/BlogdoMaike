@@ -1,0 +1,77 @@
+﻿
+
+
+@model IEnumerable<BlogdoMaike.Models.Post>
+           
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/views/Shared/_Layout.cshtml";
+
+    
+}
+
+<h2>Index</h2>
+
+
+
+
+@Html.ActionLink("Novo post","New","post",null , new {@class = "btn btn-primary" })
+
+<br/>
+<br/>
+@if (!Model.Any())
+{
+    
+    <p>Ainda não temos nenhuma postagem no Blog! :(</p>
+
+
+}
+else
+
+{
+
+    <table id="post" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>Titulo</th>
+                <th>Data Do post</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var post in Model)
+        {
+
+
+
+                     <tr>
+                                 <td>
+                                     @Html.ActionLink(post.Title, "Details","posts",new { id = post.Id}, null)
+                                 </td>
+                                  <td>
+                                   @post.DateAdded
+
+                                  </td>
+                                  <td>
+                                   @post.PostingBody
+                                  </td>
+                     </tr>
+        
+
+}
+
+            </tbody>
+
+
+
+
+
+
+
+
+
+        </table>
+}
